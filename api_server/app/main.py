@@ -1,6 +1,6 @@
-from typing import Union
 import mysql.connector 
 import random
+import requests
 
 from fastapi import FastAPI
 
@@ -51,6 +51,34 @@ def read_root(game_id: str):
 
 #     mydb.commit()
 
+#     create_connector = requests.post("http://localhost:8083/connectors/", headers={"Accept": "application/json", "Content-Type":"application/json"}, data={
+#       "name": f"source-debezium-orders-{game_id}",
+#       "config": {
+#             "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+#             "database.hostname": "mysql",
+#             "database.port": "3306",
+#             "database.user": "debezium",
+#             "database.password": "dbz",
+#             "database.server.id": "43",
+#             "database.server.name": "asgard",
+#             "table.whitelist": f"gameodds.game_{game_id}",
+#             "database.history.kafka.bootstrap.servers": "kafka:29092",
+#             "database.history.kafka.topic": "dbserver2" ,
+#             "decimal.handling.mode": "double",
+#             "include.schema.changes": "true",
+#             "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+#             "value.converter.schemas.enable": "false",
+#             "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+#             "key.converter.schemas.enable": "false",
+#             "transforms": "unwrap,addTopicPrefix",
+#             "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+#             "transforms.addTopicPrefix.type":"org.apache.kafka.connect.transforms.RegexRouter",
+#             "transforms.addTopicPrefix.regex":"(.*)",
+#             "transforms.addTopicPrefix.replacement":"mysql-debezium-json-no-schema-$1",
+#             "database.allowPublicKeyRetrieval": "true"
+#        }
+#     })
+
 
 @app.post("/sendodd/{game_id}")
 def read_root(game_id: str):
@@ -62,7 +90,6 @@ def read_root(game_id: str):
     odd4 = round(random.random() * 5, 2)
     odd5 = round(random.random() * 5, 2)
 
-    print(game_id, odd1, odd2, odd3, odd4, odd5)
     sql = f'INSERT INTO game_{game_id} (game_id, odd1, odd2, odd3, odd4, odd5) VALUES ({game_id}, {str(odd1)}, {str(odd2)}, {str(odd3)}, {str(odd4)}, {str(odd5)})'
 
     mycursor.execute(sql)

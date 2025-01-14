@@ -1,4 +1,3 @@
-//import logo from './logo.svg';
 import './App.css';
 
 import React, { useEffect, useState } from 'react';
@@ -27,11 +26,6 @@ function App() {
         return;
       }
 
-
-
-      //console.log(event.data)
-      //console.log(typeof(event.data))
-      //console.log(JSON.parse(event.data).odd1)
       const payload = JSON.parse(event.data);
 
       if (payload.game_id === '123121'){
@@ -69,7 +63,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
         <h1>
           Odds Market
         </h1>
