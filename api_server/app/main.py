@@ -8,7 +8,7 @@ app = FastAPI()
 
 
 KAFKA_CONNECT_IP = "172.18.0.6"
-MYSQL_IP = "172.18.0.3"
+MYSQL_IP = "172.18.0.2"
 
 @app.on_event("startup")
 async def startup_event():
@@ -82,11 +82,11 @@ def create_game(game_id: str):
             "database.port": "3306",
             "database.user": "debezium",
             "database.password": "dbz",
-            "database.server.id": "43",
+            "database.server.id": f"{game_id}",
             "database.server.name": "asgard",
             "table.whitelist": f"gameodds.game_{game_id}",
             "database.history.kafka.bootstrap.servers": "kafka:29092",
-            "database.history.kafka.topic": "dbserver2" ,
+            "database.history.kafka.topic": f"dbserver_{game_id}" ,
             "decimal.handling.mode": "double",
             "include.schema.changes": "true",
             "value.converter": "org.apache.kafka.connect.json.JsonConverter",

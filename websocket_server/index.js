@@ -2,7 +2,7 @@ const WebSocket = require("ws");
 const uuidv4 = require("uuid").v4;
 var mysql = require('mysql2');
 
-const MYSQL_IP = "172.18.0.3";
+const MYSQL_IP = "172.18.0.2";
 const KAFKA_IP = "172.18.0.4";
 
 let connection_names = ["mysql-debezium-json-no-schema-asgard.gameodds.game_123120"];
@@ -55,10 +55,10 @@ const run = async (connection_names) => {
   //   console.log(`c5: ${connection_names}`);
   // });
 
-  await consumer.subscribe({
-    topics: connection_names,
-    fromBeginning: false,
-  });
+  // await consumer.subscribe({
+  //   topics: connection_names,
+  //   fromBeginning: false,
+  // });
 
   // await consumer.subscribe({
   //   topic: "mysql-debezium-json-no-schema-asgard.gameodds.game_123121",
@@ -70,6 +70,13 @@ const run = async (connection_names) => {
   //   fromBeginning: false,
   // });
 
+    await connection_names.forEach((item) => {
+      console.log(`connecting: ${item}`);
+      consumer.subscribe({
+          topics: [item],
+          fromBeginning: false,
+        });
+  });
 
   // await consumer.subscribe({
   //   topic: "mysql-debezium-json-no-schema-asgard.gameodds.game_123122",
