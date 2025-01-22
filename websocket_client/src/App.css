@@ -37,9 +37,21 @@
   }
 }
 
+/* .container {
+  display: flex;
+  gap: 100px; 
+}
+.list {
+  list-style-type: none; 
+  padding: 0;
+  width: 45%; 
+}
+.list li {
+  margin: 5px 0;
+} */
+
 .container {
   display: flex;
-  /* justify-content: space-between; Adjust spacing between the lists */
   gap: 100px; /* Additional spacing between the lists */
 }
 .list {
@@ -48,5 +60,12 @@
   width: 45%; /* Adjust width to fit side by side */
 }
 .list li {
+  display: flex; /* Make each list item a flex container */
+  justify-content: space-between; /* Space columns evenly */
+  align-items: center; /* Align items vertically in the row */
   margin: 5px 0; /* Add spacing between list items */
+}
+.list li div {
+  flex: 1; /* Make columns take equal width */
+  padding: 0 10px; /* Add some horizontal padding between columns */
 }

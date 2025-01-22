@@ -74,7 +74,7 @@ def create_game(game_id: str):
 
     mydb.commit()
 
-    create_connector = requests.post(f"http://{KAFKA_CONNECT_IP}:8083/connectors/", headers={"Accept": "application/json", "Content-Type":"application/json"}, data={
+    create_connector = requests.post(f"http://{KAFKA_CONNECT_IP}:8083/connectors/", headers={"Accept": "application/json", "Content-Type":"application/json"}, json={
       "name": f"source-debezium-orders-{game_id}",
       "config": {
             "connector.class": "io.debezium.connector.mysql.MySqlConnector",

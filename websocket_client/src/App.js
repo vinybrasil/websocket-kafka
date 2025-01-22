@@ -28,7 +28,7 @@ function App() {
 
       const payload = JSON.parse(event.data);
 
-      if (payload.game_id === '123121'){
+      if (payload.game_id === '123120'){
         setMessage1(payload);
       } else if (payload.game_id === '123122') {
         setMessage2(payload);
@@ -64,7 +64,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>
-          Odds Market
+          Odds Market Simulator
         </h1>
 
         <div id="output" className="container"> 
