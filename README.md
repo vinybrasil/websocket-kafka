@@ -6,6 +6,10 @@ POST localhost:80/sendodd/123120
 
 POST localhost:80/games
 
+## todo 
+
+ - adiciona um topico para toda vez que tiver um jogo novo ele atualize
+
 ## run
 
 docker-compose up -d
@@ -21,6 +25,8 @@ docker build -t fastapi-image . && docker run -d --name fastapi-container -p 80:
 sh create_connectors.sh
 
 docker build -t websocket-server . && docker run -d --name websocket-server-container -p 81:81 --net websockets_default websocket-server 
+
+ docker build -t websocket-client . && docker run -d -p 3000:80 --name websocket-client-container --net websockets_default websocket-client
 
 
 ## debug 
@@ -65,3 +71,5 @@ curl -i -X POST -H "Accept:application/json" \
             "database.allowPublicKeyRetrieval": "true"
        }
     }'
+
+

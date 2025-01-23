@@ -49,23 +49,36 @@
 .list li {
   margin: 5px 0;
 } */
+#output {
+  display: flex;
+  flex-direction: column; /* Stack each game vertically */
+  gap: 2px;
+  padding: 10px;
+}
 
 .container {
   display: flex;
-  gap: 100px; /* Additional spacing between the lists */
+  justify-content: center; /* Center all list containers horizontally */
+  align-items: center;
 }
+
 .list {
   list-style-type: none; /* Remove default bullets (optional) */
   padding: 0;
-  width: 45%; /* Adjust width to fit side by side */
+  width: 100%; /* Set full width for the list */
+  display: flex;
+  justify-content: space-evenly; /* Distribute items evenly across the list */
 }
+
 .list li {
-  display: flex; /* Make each list item a flex container */
+  display: flex;
   justify-content: space-between; /* Space columns evenly */
   align-items: center; /* Align items vertically in the row */
-  margin: 5px 0; /* Add spacing between list items */
+  margin: 10px 0; /* Add spacing between list items */
 }
+
 .list li div {
-  flex: 1; /* Make columns take equal width */
-  padding: 0 10px; /* Add some horizontal padding between columns */
+  flex: flex-basis; /* Make columns take equal width */
+  padding: 0 15px; /* Add some horizontal padding between columns */
+  text-align: center; /* Center text in columns */
 }
