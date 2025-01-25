@@ -41,7 +41,7 @@ def get_game_odds():
 
     return myresult
 
-@app.post("/creategame/{game_id}")
+@app.post("/games/{game_id}")
 def create_game(game_id: str):
     mycursor = mydb.cursor()
 
