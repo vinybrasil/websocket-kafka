@@ -17,19 +17,19 @@ Build the API to send the odds:
 ```
 cd api_server
 docker build -t fastapi-image . 
-docker run -d --name fastapi-container -p 80:80 --net websockets_default fastapi-image
+docker run -d --name fastapi-container -p 80:80 --net websocket-kakfa_default  fastapi-image
 ```
 Build the websocker server:
 ```
 cd websocket_server
 docker build -t websocket-server . 
-docker run -d --name websocket-server-container -p 81:81 --net websockets_default websocket-server 
+docker run -d --name websocket-server-container -p 81:81 --net websocket-kakfa_default websocket-server 
 ```
 Build the websocker client:
 ```
 cd websocket_client
 docker build -t websocket-client . 
-docker run -d -p 3000:80 --name websocket-client-container --net websockets_default websocket-client
+docker run -d -p 3000:80 --name websocket-client-container --net websocket-kakfa_default websocket-client
 ```
 Add some games and some odds
 ```
@@ -40,6 +40,10 @@ And now just see them updating in the browser when calling
 ```
 POST localhost:80/sendodd/123120
 ```
+
+## known issues
+
+- sometimes its needed to restart the schema-registry and kafka connect to propertly work;
 ## todo 
 
   - update the list of topics to read in the websocket server dynamically;
